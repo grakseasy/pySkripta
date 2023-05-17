@@ -1,75 +1,22 @@
-from openpyxl import Workbook
-from openpyxl import load_workbook
-import os
-import re
+# Define the covergroup name
+covergroup_name = 'ahb_covergroup'
 
-filename = 'ahb_coverage.sv'
-svfile = open(filename, "w")
+# Define the list of coverpoints and their corresponding bins
+coverpoints = [
+    ('HADDR', 'SPLIT_BINS:HADDR= { [0:9], [10:20], [21:31]} '),
+    ('HBURST', 'SPLIT_BINS:HBURST= { 3\'b000, 3\'b001, 3\'b011, 3\'b101, 3\'b111, 3\'b010, 3\'b100, 3\'b110} '),
+    ('HSIZE', 'SPLIT_BINS:HSIZE= {2\'b00, 2\'b01, 2\'b10} '),
+    ('HTRANS', 'SPLIT_BINS:HTRANS= { 2\'b00, 2\'b01, 2\'b10, 2\'b11} '),
+    ('HWDATA', 'SPLIT_BINS:HWDATA= {[0:9], [10:20], [21:31]} '),
+    ('HRDATA', 'SPLIT_BINS:HRDATA= {[0:9], [10:20], [21:31]} ')
+]
 
-excelList = []
-coverpointNames = []
-numOfValues = []
-wb = Workbook()
-
-path_file = 'covergroup_ahb.xlsx'
-wb = load_workbook(path_file)
-ws = wb.active
-
-for col in ws.iter_cols(min_row=2, max_col=7, max_row=2):
-    for cell in col:
-        print(cell.value)
-        excelList.append(cell.value)
-
-group = excelList.pop(0)
-
-#num of values each signal can have
-for d in excelList:
-    numOfValues.append(d.count(",") + 1)
-
-#num of signals
-numOfSignals = len(numOfValues) 
-
-#svfile.write()
-#os.startfile(filename)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-"""
-"covergroup" + grupa + "; \n\n" + 
-
-for n in numOfSignals:
-s += "coverpoint_" + coverpointName + " {\n" + 
-    for m in numOfValues:
-    "bins " + coverpointName + "_" + str(i) + " = { };\n"
-    
-    + " }"
-    + " endgroup"
-""
-"""
+# Define the covergroup and coverpoints
+print('covergroup ' + covergroup_name + ';')
+for cp_name, cp_bins in coverpoints:
+    print('    coverpoint_' + cp_name)
+    print('    {')
+    for i, bin_range in enumerate(cp_bins.split('{')[1].split('}')[0].split(',')):
+        print('        bins    ' + cp_name + '_' + str(i) + ' = ' + bin_range.strip() + ';')
+    print('    }')
+print('endgroup')
