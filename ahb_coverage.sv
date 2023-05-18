@@ -1,39 +1,44 @@
-// Automatically generated AHB coverage code
-`ifndef AHB_COVERAGE_SV
-`define AHB_COVERAGE_SV
-
-covergroup ahb_covergroup;
-
-	coverpoint ('HADDR', 'SPLIT_BINS:HADDR= { [0:9], [10:20], [21:31]} ')
-	{
-		bins ('HADDR', 'SPLIT_BINS:HADDR= { [0:9], [10:20], [21:31]} ')_0 = S;
-	}
-
-	coverpoint ('HBURST', "SPLIT_BINS:HBURST= { 3'b000, 3'b001, 3'b011, 3'b101, 3'b111, 3'b010, 3'b100, 3'b110} ")
-	{
-		bins ('HBURST', "SPLIT_BINS:HBURST= { 3'b000, 3'b001, 3'b011, 3'b101, 3'b111, 3'b010, 3'b100, 3'b110} ")_0 = P;
-	}
-
-	coverpoint ('HSIZE', "SPLIT_BINS:HSIZE= {2'b00, 2'b01, 2'b10} ")
-	{
-		bins ('HSIZE', "SPLIT_BINS:HSIZE= {2'b00, 2'b01, 2'b10} ")_0 = L;
-	}
-
-	coverpoint ('HTRANS', "SPLIT_BINS:HTRANS= { 2'b00, 2'b01, 2'b10, 2'b11} ")
-	{
-		bins ('HTRANS', "SPLIT_BINS:HTRANS= { 2'b00, 2'b01, 2'b10, 2'b11} ")_0 = I;
-	}
-
-	coverpoint ('HWDATA', 'SPLIT_BINS:HWDATA= {[0:9], [10:20], [21:31]} ')
-	{
-		bins ('HWDATA', 'SPLIT_BINS:HWDATA= {[0:9], [10:20], [21:31]} ')_0 = T;
-	}
-
-	coverpoint ('HRDATA', 'SPLIT_BINS:HRDATA= {[0:9], [10:20], [21:31]} ')
-	{
-		bins ('HRDATA', 'SPLIT_BINS:HRDATA= {[0:9], [10:20], [21:31]} ')_0 = _;
-	}
-
+covergroup ahb_coverage_group;
+    coverpoint_HADDR
+    {
+        bins    HADDR_0 = {[0:9]};
+        bins    HADDR_1 = {[10:20]};
+        bins    HADDR_2 = {[21:31]};
+    }
+    coverpoint_HBURST
+    {
+        bins    HBURST_0 = {3'b000};
+        bins    HBURST_1 = {3'b001};
+        bins    HBURST_2 = {3'b011};
+        bins    HBURST_3 = {3'b101};
+        bins    HBURST_4 = {3'b111};
+        bins    HBURST_5 = {3'b010};
+        bins    HBURST_6 = {3'b100};
+        bins    HBURST_7 = {3'b110};
+    }
+    coverpoint_HSIZE
+    {
+        bins    HSIZE_0 = {2'b00};
+        bins    HSIZE_1 = {2'b01};
+        bins    HSIZE_2 = {2'b10};
+    }
+    coverpoint_HTRANS
+    {
+        bins    HTRANS_0 = {2'b00};
+        bins    HTRANS_1 = {2'b01};
+        bins    HTRANS_2 = {2'b10};
+        bins    HTRANS_3 = {2'b11};
+    }
+    coverpoint_HWDATA
+    {
+        bins    HWDATA_0 = {[0:9]};
+        bins    HWDATA_1 = {[10:20]};
+        bins    HWDATA_2 = {[21:31]};
+    }
+    coverpoint_HRDATA
+    {
+        bins    HRDATA_0 = {[0:9]};
+        bins    HRDATA_1 = {[10:20]};
+        bins    HRDATA_2 = {[21:31]};
+    }
 endgroup
-
-`endif // AHB_COVERAGE_SV
