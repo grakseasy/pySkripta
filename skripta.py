@@ -27,8 +27,10 @@ coverpoints = list(zip(signals, column_data))
 
 with open('ahb_coverage.sv', 'w') as file:
     file.write('covergroup ' + covergroup_name + ';\n')
+    file.write('option.per_instance = ' + str(1) + ';\n')
+    file.write('option.name = "' + covergroup_name + '";\n\n')
     for cp_name, cp_bins in coverpoints:
-        file.write('    coverpoint_' + cp_name + '      :   coverpoint ' + cp_name + '\n')
+        file.write('    coverpoint_' + cp_name + '      : coverpoint ' + cp_name + '\n')
         file.write('    {\n')
         for i, bin_range in enumerate(cp_bins.split('{')[1].split('}')[0].split(',')):
             file.write('        bins    ' + cp_name + '_' + str(i) + ' = {' + bin_range.strip() + '};\n')
