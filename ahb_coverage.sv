@@ -5,8 +5,8 @@ option.name = "ahb_coverage_group";
     coverpoint_HADDR      : coverpoint HADDR
     {
         bins    HADDR_0 = {[32'h0:32'h66666665]};
-        bins    HADDR_1 = {32'h66666666:32'hcccccccb};
-        bins    HADDR_2 = {32'hcccccccc:32'hffffffff};
+        bins    HADDR_1 = {[32'h66666666:32'hcccccccb]};
+        bins    HADDR_2 = {[32'hcccccccc:32'hffffffff]};
     }
     coverpoint_HBURST      : coverpoint HBURST
     {
@@ -35,13 +35,13 @@ option.name = "ahb_coverage_group";
     coverpoint_HWDATA      : coverpoint HWDATA
     {
         bins    HWDATA_0 = {[32'h0:32'h66666665]};
-        bins    HWDATA_1 = {32'h66666666:32'hcccccccb};
-        bins    HWDATA_2 = {32'hcccccccc:32'hffffffff};
+        bins    HWDATA_1 = {[32'h66666666:32'hcccccccb]};
+        bins    HWDATA_2 = {[32'hcccccccc:32'hffffffff]};
     }
     coverpoint_HRDATA      : coverpoint HRDATA
     {
         bins    HRDATA_0 = {[32'h0:32'h66666665]};
-        bins    HRDATA_1 = {32'h66666666:32'hcccccccb};
-        bins    HRDATA_2 = {32'hcccccccc:32'hffffffff};
+        bins    HRDATA_1 = {[32'h66666666:32'hcccccccb]};
+        bins    HRDATA_2 = {[32'hcccccccc:32'hffffffff]};
     }
 endgroup

@@ -1,7 +1,6 @@
-# Define the covergroup name
+#Define the covergroup name
 from openpyxl import load_workbook
 import re
-
 
 wb = load_workbook('covergroup_ahb.xlsx')
 ws = wb['Sheet2'] 
@@ -16,12 +15,11 @@ covergroup_name = column_data.pop(0)
 column_data.pop(0) #This leaves me with only SPLIT_BINS columns
 
 signals = []
-
 for signal in column_data:
     string = signal.split(":",1)[1]
     match = re.search(r'(\w+)=', string)
     result = match.group(1)
-    signals.append(result) # 'HADDR', 'HBURST'...
+    signals.append(result) #'HADDR', 'HBURST'...
 
 coverpoints = list(zip(signals, column_data))
 
@@ -37,4 +35,4 @@ with open('ahb_coverage.sv', 'w') as file:
         file.write('    }\n')
     file.write('endgroup\n')
 
-#cp_bins: ('HRDATA', 'SPLIT_BINS:HRDATA= {[0:9], [10:20], [21:31]} '), ...
+#coverpoints list: ('HRDATA', 'SPLIT_BINS:HRDATA= { [32'h0:32'h66666665], 32'h66666666:32'hcccccccb, 32'hcccccccc:32'hffffffff}'), ...
